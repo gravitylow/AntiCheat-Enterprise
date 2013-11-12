@@ -1,0 +1,27 @@
+/* Defaults */
+body {
+    background:url("../img/otis_redding.png");
+}
+/* Buttons */
+.colorblind {
+    background: #ba2a20;
+}
+/* Tables */
+.table {
+    color:white;
+}
+.panel .panel-heading, .table-head>tr>th {
+    color: white;
+}
+.table-body>tr:nth-child(even) {
+    background:#555555;
+}
+.table-body>tr>td {
+    color: white;
+}
+#login {
+    color: white;
+}
+a {
+    color:white;
+}
