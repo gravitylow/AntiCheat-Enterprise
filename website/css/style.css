@@ -1215,3 +1215,9 @@ a {
 .panel-heading img {
     vertical-align:text-bottom;
 }
+.modal table {
+    margin-top:0;
+}
+.modal .panel-body {
+    font-size:12px;
+}
