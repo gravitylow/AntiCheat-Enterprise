@@ -1194,18 +1194,24 @@ a {
     vertical-align: middle;
     color:lightGrey;
 }
-.panel table thead {
+.panel table thead tr {
     box-shadow:none;
     border-radius:0;
     outline:none;
     background:#4B4B4B;
     margin:0;
 }
-.panel table tbody {
+.panel table thead tr th, .panel table tbody tr td {
+    padding: 0 20px;
+}
+.panel table tbody tr {
     box-shadow:none;
     border-radius:0;
     outline:none;
     margin:0;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
+}
+.panel-heading img {
+    vertical-align:text-bottom;
 }
