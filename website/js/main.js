@@ -12,4 +12,7 @@ $(function(){
             $('#stylesheet').attr("href", "css/red.css");
         }
     });
+    $.get("/ajax/maintable.php", function(data){
+        $("#maintable").empty().append(data);
+    })
 });
