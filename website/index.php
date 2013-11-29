@@ -1,3 +1,11 @@
+<?php
+
+require_once("config.php");
+
+$logs = $db->query("SELECT * FROM ac_logs");
+
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -45,7 +53,17 @@
                         <th>Time</th>
                     </tr>
                     </thead>
-                    <tbody class="table-body" id="maintable"></tbody>
+                    <tbody class="table-body">
+                    <?php foreach($logs as $log){ ?>
+                        <tr>
+                            <td class="avatar"><img src="http://minecraft.aggenkeech.com/face.php?u=<?php echo $log['user']; ?>&s=20" /></td>
+                            <td><a rel="leanModal" href="#modal-userinfo"><?php echo $log['user']; ?></a></td>
+                            <td><?php echo $log['check_type']; ?></td>
+                            <td><?php echo $log['server']; ?></td>
+                            <td><?php echo $log['time']; ?></td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -53,26 +71,8 @@
 </div>
 <div id="modal-userinfo" class="modal">
     <div class="panel">
-        <div class="panel-heading"><img src="http://minecraft.aggenkeech.com/face.php?u=lDucks&s=20" /> lDucks</div>
-        <div class="panel-body">
-            lDucks was last seen on {timestamp}.
-        </div>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Server</th>
-                <th>Time</th>
-                <th>Type</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>test</td>
-                <td>Time</td>
-                <td>Type</td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="panel-heading">Loading</div>
+        <div class="panel-body">Loading, please wait.</div>
     </div>
 </div>
 </body>

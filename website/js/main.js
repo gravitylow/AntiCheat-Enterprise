@@ -4,7 +4,7 @@ $(function(){
     $("#login").click(function(){
         $("#login-content").slideToggle();
     });
-    $("a[href='#colorblind'").click(function(){
+    $("a[href='#colorblind']").click(function(){
         var cur = $('#stylesheet').attr("href");
         if(cur == "css/red.css") {
             $('#stylesheet').attr("href", "css/colorblind.css");
@@ -12,7 +12,10 @@ $(function(){
             $('#stylesheet').attr("href", "css/red.css");
         }
     });
-    $.get("/ajax/maintable.php", function(data){
-        $("#maintable").empty().append(data);
-    })
+    $("a[href='#modal-userinfo']").on("click", function(){
+        var user = $(this).text();
+        $.post("ajax/modal-userinfo.php", {user: user}, function(data){
+            $("#modal-userinfo").empty().append(data);
+        })
+    });
 });
