@@ -3,7 +3,7 @@
 $algorithm = 'whirlpool';
 $saltLength = 12;
 
-function encryptPassword($password) {
+public function encryptPassword($password) {
         
         // Generate a random salt of the given length
 	$salt = substr(hash($algorithm, uniqid(rand(), true)), 0, $saltLength);
@@ -18,7 +18,7 @@ function encryptPassword($password) {
 	return substr($hash, 0, $saltPos) . $salt . substr($hash, $saltPos);
 }
 
-function checkPassword($password, $storedPassword) {
+public function checkPassword($password, $storedPassword) {
 
         // Calculate where the salt should have been inserted into the stored hash
         $saltPos = (strlen($password) >= strlen($storedPassword) ? strlen($storedPassword) : strlen($password));
