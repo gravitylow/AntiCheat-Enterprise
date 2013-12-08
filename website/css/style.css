@@ -1130,11 +1130,6 @@ td.avatar img {
     -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
 }
-#login-content {
-    width:100%;
-    height: 100px;
-    background: rgba(0,0,0,.4);
-}
 a {
     text-decoration: none;
 }
@@ -1220,4 +1215,24 @@ a {
 }
 .modal .panel-body {
     font-size:12px;
+}
+#login-content {
+    width: 100%;
+    height: 150px;
+    background: rgba(0,0,0,.4);
+    padding: 15px 0;
+    box-sizing: border-box;
+}
+#loginform {
+    width:100%;
+    text-align:center;
+}
+#loginform input {
+    width:20%;
+    height:15px;
+    margin: 0 auto;
+}
+#loginform label {
+    color:white;
+    font-weight:bold;
 }

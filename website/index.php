@@ -21,7 +21,18 @@ $logs = $db->query("SELECT * FROM ac_logs");
 </head>
 <body>
 <div class="wrapper">
-    <div id="login-content"></div>
+    <div id="login-content">
+        <form id="loginform">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="username">Password:</label>
+                <input type="password" class="form-control" />
+            </div>
+        </form>
+    </div>
     <div id="login">Login</div>
     <div class="grid-container">
         <a href="#colorblind" class="colorblind"></a>
