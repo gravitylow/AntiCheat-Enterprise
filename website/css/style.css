@@ -1236,3 +1236,21 @@ a {
     color:white;
     font-weight:bold;
 }
+.alert {
+    background: rgb(190, 0, 0);
+    height: 40px;
+    text-align: center;
+    padding-top:12px;
+    box-sizing:border-box;
+}
+#login input[type="submit"] {
+    background: transparent;
+    text-decoration: underline;
+    cursor: pointer;
+    border:0;
+    color:white;
+    width:auto;
+    text-decoration:none;
+    font-family: sans-serif;
+    outline:none;
+}
