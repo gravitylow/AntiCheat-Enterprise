@@ -27,11 +27,11 @@ $logs = $db->query("SELECT * FROM ac_logs");
         <div id="login-content">
             <div class="form-group">
                 <label for="username">Username:</label>
-                <input type="text" class="form-control" id="username" />
+                <input type="text" class="form-control" id="username" name="username" />
             </div>
             <div class="form-group">
                 <label for="username">Password:</label>
-                <input type="password" class="form-control" id="password" />
+                <input type="password" class="form-control" id="password" name="password" />
             </div>
         </div>
         <div id="login"><input type="submit" value="Login" /></div>
