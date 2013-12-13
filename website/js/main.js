@@ -9,8 +9,13 @@ $(function(){
         var input = $("#loginform :input").serializeArray();
 
         $.post("util/Login.php", input, function(data){
-            $("#login-alert").empty().append(data).slideDown();
+            $("#login-alert-text").empty().append(data);
+            $("#login-alert").slideDown();
         });
+    });
+
+    $("#close-login-alert").click(function(){
+        $("#login-alert").slideUp();
     });
 
     $("a[href='#colorblind']").click(function(){

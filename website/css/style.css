@@ -1240,7 +1240,7 @@ a {
     background: rgb(190, 0, 0);
     height: 40px;
     text-align: center;
-    padding-top:12px;
+    padding:12px;
     box-sizing:border-box;
 }
 #login input[type="submit"] {
@@ -1253,4 +1253,21 @@ a {
     text-decoration:none;
     font-family: sans-serif;
     outline:none;
+}
+button.close {
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    -webkit-appearance: none;
+}
+.close {
+    float: left;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .2;
+    filter: alpha(opacity=20);
+    outline:0;
 }

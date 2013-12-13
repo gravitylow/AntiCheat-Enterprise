@@ -22,7 +22,7 @@ $logs = $db->query("SELECT * FROM ac_logs");
 <body>
 <div class="wrapper">
     <?php if(!session_id()){ ?>
-    <div class="alert" id="login-alert"></div>
+    <div class="alert" id="login-alert"><span id="login-alert-text"></span><button type="button" class="close" id="close-login-alert">x</button></div>
     <form id="loginform">
         <div id="login-content">
             <div class="form-group">

@@ -20,7 +20,7 @@ if(empty($username) || empty($password)){
                 $_SESSION['username'] = $row['username'];
                 $_SESSION['rank'] = $row['rank'];
                 $page = $_SERVER['PHP_SELF'];
-                header("Refresh: 0; $page")
+                header("Refresh: 0; $page");
             }else
                 echo 'Your username or password was incorrect';
         }
