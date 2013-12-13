@@ -16,7 +16,8 @@ body {
     float: none !important;
 }
 .well {
-    margin-top:30px;
+    text-align: center;
+    margin-top: 30px;
     padding: 15px;
     background: rgba(0, 0, 0, 0.1);
     border-radius: 10px;
