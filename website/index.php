@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once("config.php");
 
 $logs = $db->query("SELECT * FROM ac_logs");
@@ -21,7 +21,7 @@ $logs = $db->query("SELECT * FROM ac_logs");
 </head>
 <body>
 <div class="wrapper">
-    <?php if(!session_id()){ ?>
+    <?php if(!$_SESSION['online']){ ?>
     <div class="alert" id="login-alert"><span id="login-alert-text"></span><button type="button" class="close" id="close-login-alert">x</button></div>
     <form id="loginform">
         <div id="login-content">
@@ -36,6 +36,11 @@ $logs = $db->query("SELECT * FROM ac_logs");
         </div>
         <div id="login"><input type="submit" value="Login" /></div>
     </form>
+        <?php
+
+        }
+
+            ?>
     <div class="grid-container">
         <a href="#colorblind" class="colorblind"></a>
         <div class="grid-100">
@@ -48,11 +53,7 @@ $logs = $db->query("SELECT * FROM ac_logs");
                 AntiCheat helps server admins easily identify and block malicious users by monitoring and analyzing the behavior of your players. AntiCheat will look for tell-tale signs of hacked clients, as well as implement limits into the game so that players cannot gain an advantage by hacking.
             </div>
         </div>
-        <?php
-
-        }else{
-
-            ?>
+        <?php if($_SESSION['online']){ ?>
             <div class="grid-100 grid-parent">
                 <div class="grid-30 center">
                     <div class="well">
