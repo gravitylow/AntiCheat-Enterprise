@@ -1,23 +1,21 @@
 $(function(){
     $('a[rel*=leanModal]').leanModal({top : 50, closeButton: ".modal-close"});
-    $("#login-alert").hide();
+
+    $(".alert").hide();
 
     $("#loginform").submit(function(e){
         e.preventDefault();
-        $("#login-alert").slideUp();
+        closeAlert();
 
         var input = $("#loginform :input").serializeArray();
 
         $.post("util/Login.php", input, function(data){
-            $("#login-alert-text").empty().append(data);
-            $("#login-alert").slideDown();
+            showAlert(data);
         });
     });
-
-    $("#close-login-alert").click(function(){
-        $("#login-alert").slideUp();
+    $("#close-alert").click(function(){
+        closeAlert();
     });
-
     $("a[href='#colorblind']").click(function(){
         var cur = $('#stylesheet').attr("href");
         if(cur == "css/red.css") {
@@ -32,4 +30,26 @@ $(function(){
             $("#modal-userinfo").empty().append(data);
         })
     });
+    $("#logout").click(function(){
+        closeAlert();
+        $.get("util/Logout.php", function(data){
+            showAlert(data);
+        });
+    });
 });
+
+function showAlert(data){
+    $("#alert-text").empty().append(data);
+    $(".alert").slideDown();
+    $("#topcontent").animate({
+        'padding-top': 40,
+        'margin-bottom': -40,
+    });
+}
+function closeAlert(){
+    $(".alert").slideUp();
+    $("#topcontent").animate({
+        'padding-top': 0,
+        'margin-bottom': 0,
+    });
+}

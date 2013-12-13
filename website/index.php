@@ -21,26 +21,30 @@ $logs = $db->query("SELECT * FROM ac_logs");
 </head>
 <body>
 <div class="wrapper">
-    <?php if(!$_SESSION['online']){ ?>
-    <div class="alert" id="login-alert"><span id="login-alert-text"></span><button type="button" class="close" id="close-login-alert">x</button></div>
-    <form id="loginform">
-        <div id="login-content">
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" class="form-control" id="username" name="username" />
-            </div>
-            <div class="form-group">
-                <label for="username">Password:</label>
-                <input type="password" class="form-control" id="password" name="password" />
-            </div>
-        </div>
-        <div id="login"><input type="submit" value="Login" /></div>
-    </form>
+    <div class="alert"><span id="alert-text"></span><button type="button" class="close" id="close-alert">x</button></div>
+    <div id="topcontent">
+        <?php if(!$_SESSION['online']){ ?>
+            <form id="loginform">
+                <div id="login-content">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" class="form-control" id="username" name="username" />
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Password:</label>
+                        <input type="password" class="form-control" id="password" name="password" />
+                    </div>
+                </div>
+                <div id="login"><input type="submit" value="Login" /></div>
+            </form>
         <?php
 
-        }
+        }else {
 
             ?>
+            <div id="logout"><input type="submit" value="Logout" /></div>
+        <?php } ?>
+    </div>
     <div class="grid-container">
         <a href="#colorblind" class="colorblind"></a>
         <div class="grid-100">
