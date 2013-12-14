@@ -11,7 +11,6 @@ $logs = $db->query("SELECT * FROM ac_logs");
 <head>
     <meta name="viewport" content="width=device-width" />
     <link type="text/css" rel="stylesheet" href="css/style.css" />
-    <link type="text/css" rel="stylesheet" href="css/red.css" id="stylesheet" />
     <link type="text/css" rel="stylesheet" href="css/grid.css" />
     <script src="//codeorigin.jquery.com/jquery-2.0.3.min.js" type="text/javascript"></script>
     <script src="js/leanModal.min.js" type="text/javascript"></script>
@@ -31,7 +30,7 @@ $logs = $db->query("SELECT * FROM ac_logs");
                         <input type="text" class="form-control" id="username" name="username" />
                     </div>
                     <div class="form-group">
-                        <label for="username">Password:</label>
+                        <label for="password">Password:</label>
                         <input type="password" class="form-control" id="password" name="password" />
                     </div>
                 </div>
@@ -46,7 +45,6 @@ $logs = $db->query("SELECT * FROM ac_logs");
         <?php } ?>
     </div>
     <div class="grid-container">
-        <a href="#colorblind" class="colorblind"></a>
         <div class="grid-100">
             <div class="well text-center">
                 <img src="img/logo.png" class="logo center" />
@@ -82,15 +80,22 @@ $logs = $db->query("SELECT * FROM ac_logs");
                         </tr>
                         </thead>
                         <tbody class="table-body">
-                        <?php foreach($logs as $log){ ?>
+                        <?php if(mysqli_num_rows($logs) == 0){ ?>
                             <tr>
-                                <td class="avatar"><img src="http://minecraft.aggenkeech.com/face.php?u=<?php echo $log['user']; ?>&s=20" /></td>
-                                <td><a rel="leanModal" href="#modal-userinfo"><?php echo $log['user']; ?></a></td>
-                                <td><?php echo $log['check_type']; ?></td>
-                                <td><?php echo $log['server']; ?></td>
-                                <td><?php echo $log['time']; ?></td>
+                                <td colspan="5" class="text-center">There aren't any logs to be displayed!</td>
                             </tr>
-                        <?php } ?>
+                        <?php }else {
+                            foreach($logs as $log){ ?>
+                                <tr>
+                                    <td class="avatar"><img src="http://minecraft.aggenkeech.com/face.php?u=<?php echo $log['user']; ?>&s=20" /></td>
+                                    <td><a rel="leanModal" href="#modal-userinfo"><?php echo $log['user']; ?></a></td>
+                                    <td><?php echo $log['check_type']; ?></td>
+                                    <td><?php echo $log['server']; ?></td>
+                                    <td><?php echo $log['time']; ?></td>
+                                </tr>
+                            <?php }
+                        }
+                        ?>
                         </tbody>
                     </table>
                 </div>
