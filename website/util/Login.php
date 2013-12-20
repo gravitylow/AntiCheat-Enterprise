@@ -12,26 +12,26 @@ if(empty($username) || empty($password)){
     $stmt->bind_param('s',$username);
     $stmt->execute();
     $stmt->store_result();
-
-    if($stmt->num_rows() == 0){
-        echo 'Your username or password was incorrect [0x001]';
-    }else{
-        $stmt->bind_result($nid, $nusername, $npassword, $nprivileges);
-        while($stmt->fetch()){
-            if(PassAuth::checkPassword($password, $npassword)){
-
-                session_start();
-                $_SESSION['online'] = true;
-                $_SESSION['username'] = $nusername;
-                $_SESSION['privileges'] = $nprivileges;
-                $page = $_SERVER['PHP_SELF'];
-
-                echo 'Logging you in...<meta http-equiv="refresh" content="0">';
-            }else
-                echo 'Your username or password was incorrect [0x002]';
-        }
-    }
-
-    $stmt->free_result();
-    $stmt->close();
 }
+
+if($stmt->num_rows() == 0){
+    echo 'Your username or password was incorrect [0x001]';
+}else{
+    $stmt->bind_result($nid, $nusername, $npassword, $nprivileges);
+    while($stmt->fetch()){
+        if(PassAuth::checkPassword($password, $npassword)){
+
+            session_start();
+            $_SESSION['online'] = true;
+            $_SESSION['username'] = $nusername;
+            $_SESSION['privileges'] = $nprivileges;
+            $page = $_SERVER['PHP_SELF'];
+
+            echo 'Logging you in...<meta http-equiv="refresh" content="0">';
+        }else
+            echo 'Your username or password was incorrect [0x002]';
+    }
+}
+
+$stmt->free_result();
+$stmt->close();

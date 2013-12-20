@@ -8,6 +8,8 @@
  *   http://www.gnu.org/licenses/gpl.html
  *
  * Date: Tue Aug 13 12:50:00 2013 -0500
+ *
+ * Slightly modified by lDucks
  */
 //
 
@@ -157,7 +159,6 @@
     mergeSettings = function(options) {
         var newOptions = $.extend(true, {}, defaults, options);
 
-        // TODO: figure out a better way to do this.
         // Doing `extend(true)` causes any elements that are arrays
         // to merge the default and options arrays instead of overriding the defaults.
         if (options) {
@@ -202,7 +203,6 @@
         this.$element.trigger('dynatable:beforeProcess', data);
 
         if (!$.isEmptyObject(this.settings.dataset.queries)) { data[this.settings.params.queries] = this.settings.dataset.queries; }
-        // TODO: Wrap this in a try/rescue block to hide the processing indicator and indicate something went wrong if error
         this.processingIndicator.show();
 
         if (this.settings.features.sort && !$.isEmptyObject(this.settings.dataset.sorts)) { data[this.settings.params.sorts] = this.settings.dataset.sorts; }
@@ -309,7 +309,6 @@
 
     function defaultAttributeWriter(record) {
         // `this` is the column object in settings.columns
-        // TODO: automatically convert common types, such as arrays and objects, to string
         return record[this.id];
     };
 
@@ -1332,8 +1331,6 @@
                     settings.dataset.page + settings.inputs.paginationGap[2],
                     (pages + 1) - settings.inputs.paginationGap[3]
                 ];
-
-            pageLinks += '<li><span>Pages: </span></li>';
 
             for (var i = 1; i <= pages; i++) {
                 if ( (i > breaks[0] && i < breaks[1]) || (i > breaks[2] && i < breaks[3])) {
