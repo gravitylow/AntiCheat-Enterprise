@@ -41,7 +41,13 @@ $logs = $db->query("SELECT * FROM ac_logs");
         }else {
 
             ?>
-            <div id="logout"><input type="submit" value="Logout" /></div>
+            <div id="usercp">
+                <input type="submit" value="Change Settings" />
+                <!--                TODO: IF ADMIN-->
+                <input type="submit" value="Manage Users" />
+                <!--                END IF-->
+                <input type="submit" id="logout" value="Logout" />
+            </div>
         <?php } ?>
     </div>
     <div class="grid-container">

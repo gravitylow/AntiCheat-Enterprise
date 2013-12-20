@@ -1,16 +1,41 @@
 <?php
 include('config.php');
+require("PassAuth.php");
+
+if(isset($_POST['submit'])){
+    $pass1 = $_POST['pass1'];
+    $pass2 = $_POST['pass2'];
+    if(empty($pass1) || $empty($pass2)){
+        echo 'You must enter a password.';
+    }else{
+        if($pass1 == $pass2){
+            $password = PassAuth::encryptPassword($_POST['pass1']);
+            $username = $_POST['username'];
+            if(empty($username)){
+                echo 'You must enter a username.';
+            }else{
+                $db->query("CREATE TABLE ac_users(id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,username VARCHAR(16),password VARCHAR(256),privileges VARCHAR(45))");
+                $stmt = $db->prepare('INSERT INTO ac_users(`username`,`password`,`privileges`) VALUES(?,?,?)');
+                $stmt->bind_param('sss',$username,$password,'super');
+                $stmt->execute();
+                ?>
+                <h1>Installation Completed</h1>
+                Please delete the install.php file for security reasons. Then, return to your index page and sign in with your new account.
+            <?php
+            }
+        }else{
+            echo'Your passwords do not match, please try again.';
+        }
+    }
+}
 ?>
-<div id="stepone">
-    <h2>Step One</h2>
+<h1>Install</h1>
+<form method="post">
     Enter Superadmin Username:
-    <form>
-        <input type="text" /><br />
-        Enter Superadmin Password:
-        <input type="password" /><br />
-        Enter Superadmin Password (Again):
-        <input type="password" /><br />
-        <button>Continue</button>
-    </form>
-</div>
-<div id="stream"></div>
+    <input type="text" name="username" required /><br />
+    Enter Superadmin Password:
+    <input type="password" name="pass1" required /><br />
+    Enter Superadmin Password (Again):
+    <input type="password" name="pass2" required /><br />
+    <input type="submit" value="Install" name="submit" />
+</form>
