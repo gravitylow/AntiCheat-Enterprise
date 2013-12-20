@@ -1,8 +1,5 @@
 $(function(){
-    $('a[rel*=leanModal]').leanModal({top : 50, closeButton: ".modal-close"});
-
     $(".alert").hide();
-
     $("#loginform").submit(function(e){
         e.preventDefault();
         closeAlert();
@@ -24,19 +21,33 @@ $(function(){
             $('#stylesheet').attr("href", "css/red.css");
         }
     });
-    $("a[href='#modal-userinfo']").on("click", function(){
-        var user = $(this).text();
-        $.post("ajax/modal-userinfo.php", {user: user}, function(data){
-            $("#modal-userinfo").empty().append(data);
-        })
-    });
+
     $("#logout").click(function(){
         closeAlert();
         $.get("util/Logout.php", function(data){
             showAlert(data);
         });
     });
+
+    $("#main-body").ready(function(){
+        var user = getUrlVar('user');
+        $.get("ajax/table.php?user="+user, function(data){
+            $("#main-body").empty().append(data).queue(function(){
+                $("#main-table").dynatable().queue(function(){
+                    $(this).dequeue();
+                });
+                $("#dynatable-query-search-main-table").addClass("form-control");
+                $("#dynatable-per-page-main-table").addClass("form-control");
+                $(this).dequeue();
+            });
+        });
+    });
 });
+
+function getUrlVar(key){
+    var result = new RegExp(key + "=([^&]*)", "i").exec(window.location.search);
+    return result && unescape(result[1]) || "";
+}
 
 function showAlert(data){
     $("#alert-text").empty().append(data);

@@ -30,7 +30,8 @@
 
 body {
     font-family:sans-serif;
-    background:url("../img/crossed_stripes.png");
+    background:url("../img/crossed_stripes.png") #3F3F3F;
+    color: white;
 }
 
 .wrapper {
@@ -1124,4 +1125,64 @@ button.close {
 
 .table-body>tr:nth-child(even) {
     background:#3A3A3A;
+}
+
+th a {
+    color: #fff;
+}
+th a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.dynatable-pagination-links {
+    margin-top: 10px;
+}
+
+.dynatable-search {
+    float: right;
+    margin-bottom: 10px;
+}
+
+.dynatable-pagination-links {
+    float: right;
+}
+
+.dynatable-record-count {
+    display: block;
+    padding: 5px 0;
+}
+
+.dynatable-pagination-links span,
+.dynatable-pagination-links li {
+    display: inline-block;
+}
+
+.dynatable-page-link,
+.dynatable-page-break {
+    display: block;
+    padding: 5px 7px;
+}
+
+.dynatable-page-link {
+    cursor: pointer;
+}
+
+.dynatable-active-page {
+    background: #A81B1B;
+    border-radius: 5px;
+    color: #fff;
+}
+.dynatable-page-prev.dynatable-active-page,
+.dynatable-page-next.dynatable-active-page {
+    background: none;
+    color: #999;
+    cursor: text;
+}
+.top-margin-20 {
+    margin-top: 20px !important;
+}
+#dynatable-per-page-main-table {
+    height: 35px;
+    width: 60px;
 }

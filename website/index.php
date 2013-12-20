@@ -1,9 +1,6 @@
 <?php
 session_start();
 require_once("config.php");
-
-$logs = $db->query("SELECT * FROM ac_logs");
-
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -13,7 +10,7 @@ $logs = $db->query("SELECT * FROM ac_logs");
     <link type="text/css" rel="stylesheet" href="css/style.css" />
     <link type="text/css" rel="stylesheet" href="css/grid.css" />
     <script src="//codeorigin.jquery.com/jquery-2.0.3.min.js" type="text/javascript"></script>
-    <script src="js/leanModal.min.js" type="text/javascript"></script>
+    <script src="js/jquery.dynatable.js" type="text/javascript"></script>
     <script src="js/main.js" type="text/javascript"></script>
     <link rel="icon" type="image/png" href="img/favicon.png" />
     <title>AntiCheat Administration Backend</title>
@@ -61,58 +58,35 @@ $logs = $db->query("SELECT * FROM ac_logs");
                 AntiCheat helps server admins easily identify and block malicious users by monitoring and analyzing the behavior of your players. AntiCheat will look for tell-tale signs of hacked clients, as well as implement limits into the game so that players cannot gain an advantage by hacking.
             </div>
         </div>
-        <?php if($_SESSION['online']){ ?>
-            <div class="grid-100 grid-parent">
-                <div class="grid-30 center">
-                    <div class="well">
-                        <div class="input-group">
-                            <input type="search" class="form-control" placeholder="Start typing to search" />
-                        <span class="input-group-btn">
-                            <button class="btn btn-danger" type="button">Search</button>
-                        </span>
-                        </div>
-                    </div>
+        <?php if($_SESSION['online']){
+            $username = $_GET['user'];
+            if(!empty($username)){ ?>
+                <div class="grid-100 text-center top-margin-20">
+                    <h2>You are viewing <?php echo $username; ?></h2>
+                    <p><a href="index.php">Go back</a></p>
                 </div>
-            </div>
-            <div class="grid-100 grid-parent">
+            <?php } ?>
+            <div class="grid-100 grid-parent top-margin-20">
                 <div class="grid-80 center">
-                    <table class="table">
+                    <table class="table" id="main-table">
                         <thead class="table-head">
                         <tr>
-                            <th colspan="2">Username</th>
+                            <th width="5%">ID</th>
+                            <th>Username</th>
                             <th>Type</th>
                             <th>Server</th>
                             <th>Time</th>
                         </tr>
                         </thead>
-                        <tbody class="table-body">
-                        <?php if(mysqli_num_rows($logs) == 0){ ?>
-                            <tr>
-                                <td colspan="5" class="text-center">There aren't any logs to be displayed!</td>
-                            </tr>
-                        <?php }else {
-                            foreach($logs as $log){ ?>
-                                <tr>
-                                    <td class="avatar"><img src="http://minecraft.aggenkeech.com/face.php?u=<?php echo $log['user']; ?>&s=20" /></td>
-                                    <td><a rel="leanModal" href="#modal-userinfo"><?php echo $log['user']; ?></a></td>
-                                    <td><?php echo $log['check_type']; ?></td>
-                                    <td><?php echo $log['server']; ?></td>
-                                    <td><?php echo $log['time']; ?></td>
-                                </tr>
-                            <?php }
-                        }
-                        ?>
+                        <tbody class="table-body" id="main-body">
+                        <tr>
+                            <td colspan="5" class="text-center">Loading..</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         <?php } ?>
-    </div>
-</div>
-<div id="modal-userinfo" class="modal">
-    <div class="panel">
-        <div class="panel-heading">Loading</div>
-        <div class="panel-body">Loading, please wait.</div>
     </div>
 </div>
 </body>
