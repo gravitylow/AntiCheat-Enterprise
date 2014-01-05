@@ -1,5 +1,9 @@
 $(function(){
-    $(".alert").hide();
+    $(".alert").ready(function(){
+        var show = $(this).data("show");
+        if(show.length == 0)
+            $(this).hide();
+    });
     $("#loginform").submit(function(e){
         e.preventDefault();
         closeAlert();
