@@ -1,9 +1,10 @@
 $(function(){
-    $(".alert").ready(function(){
+    $(".alert").each(function(){
         var show = $(this).data("show");
-        if(show.length == 0)
+        if(show == undefined || show.length == 0)
             $(this).hide();
     });
+
     $("#loginform").submit(function(e){
         e.preventDefault();
         closeAlert();

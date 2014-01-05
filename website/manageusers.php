@@ -17,8 +17,8 @@ require_once("config.php");
 <body>
 <div class="wrapper">
     <?php if(!$_SESSION['online'] || !$_SESSION['super_user']){ ?>
-        <div class="alert" data-show="true"><span id="alert-text">You must be logged in to access this. Redirecting...</span></div>
-        <meta http-equiv="refresh" content="1">
+        <div class="alert" data-show="true"><span id="alert-text">You must be a super user to access this page. Redirecting...</span></div>
+        <meta http-equiv="refresh" content="1; url=index.php">
     <?php }else{ ?>
         Coming soon
     <?php } ?>
