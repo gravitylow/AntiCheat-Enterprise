@@ -12,12 +12,7 @@ else{
 $stmt->execute();
 $stmt->store_result();
 
-?>
-<?php if($stmt->num_rows() == 0){    ?>
-    <tr>
-        <td colspan="5" class="text-center">There aren't any logs to be displayed!</td>
-    </tr>
-<?php }else {
+if($stmt->num_rows > 0){
     $stmt->bind_result($id, $server, $time, $username, $checktype);
     while($stmt->fetch()){
         ?>
@@ -29,5 +24,4 @@ $stmt->store_result();
             <td><?php echo $time; ?></td>
         </tr>
     <?php }
-}
-?>
+} ?>

@@ -1186,3 +1186,6 @@ th a:hover {
     height: 35px;
     width: 60px;
 }
+h2 small {
+    font-size: 12px;
+}

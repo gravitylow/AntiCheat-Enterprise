@@ -39,10 +39,8 @@ require_once("config.php");
 
             ?>
             <div id="usercp">
-                <input type="submit" value="Change Settings" />
-                <!--                TODO: IF ADMIN-->
-                <input type="submit" value="Manage Users" />
-                <!--                END IF-->
+                <!--<input type="submit" value="Change Settings" />-->
+                <!--<input type="submit" value="Manage Users" />-->
                 <input type="submit" id="logout" value="Logout" />
             </div>
         <?php } ?>
@@ -62,7 +60,21 @@ require_once("config.php");
             $username = $_GET['user'];
             if(!empty($username)){ ?>
                 <div class="grid-100 text-center top-margin-20">
-                    <h2>You are viewing <?php echo $username; ?></h2>
+                    <h2>You are viewing <?php echo $username; ?> <small>(Level <?php
+                            $stmt = $db->prepare("SELECT level FROM ac_levels WHERE user = ?");
+                            $stmt->bind_param('s',$username);
+                            $stmt->execute();
+                            $stmt->store_result();
+
+                            $stmt->bind_result($level);
+                            if($stmt->num_rows > 0){
+                                while($stmt->fetch()){
+                                    echo $level;
+                                }
+                            }else{
+                                echo '0';
+                            }
+                            ?>)</small></h2>
                     <p><a href="index.php">Go back</a></p>
                 </div>
             <?php } ?>
