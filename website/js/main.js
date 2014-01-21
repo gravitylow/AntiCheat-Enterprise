@@ -47,6 +47,14 @@ $(function(){
             });
         });
     });
+
+    $("#clearlogs").click(function(){
+        if(confirm("Are you sure you want to clear the logs? This cannot be undone!")){
+            $.get("util/ClearLogs.php", function(){
+                window.location.reload();
+            })
+        }
+    });
 });
 
 function getUrlVar(key){

@@ -1189,3 +1189,6 @@ th a:hover {
 h2 small {
     font-size: 12px;
 }
+.pull-right {
+    float: right;
+}

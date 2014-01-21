@@ -1,5 +1,4 @@
 <?php
-include('config.php');
 require("util/PassAuth.php");
 
 if(isset($_POST['submit'])){
@@ -14,6 +13,7 @@ if(isset($_POST['submit'])){
             if(empty($username)){
                 echo 'You must enter a username.';
             }else{
+                include('config.php');
                 $db->query("CREATE TABLE ac_users(id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,username VARCHAR(16),password VARCHAR(256),privileges VARCHAR(45))");
                 $stmt = $db->prepare("INSERT INTO ac_users(`username`,`password`) VALUES(?,?)");
                 $stmt->bind_param('ss',$username,$password);

@@ -96,6 +96,9 @@ require_once("config.php");
                         </tr>
                         </tbody>
                     </table>
+                    <div class="pull-right top-margin-20">
+                        <button class="btn btn-default" id="clearlogs">Clear Logs</button>
+                    </div>
                 </div>
             </div>
         <?php } ?>
