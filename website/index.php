@@ -48,7 +48,7 @@ require_once("config.php");
     <div class="grid-container">
         <div class="grid-100">
             <div class="well text-center">
-                <img src="img/logo.png" class="logo center" />
+                <a href="index.php"><img src="img/logo.png" class="logo center" /></a>
             </div>
         </div>
         <div class="grid-100">
@@ -60,22 +60,47 @@ require_once("config.php");
             $username = $_GET['user'];
             if(!empty($username)){ ?>
                 <div class="grid-100 text-center top-margin-20">
-                    <h2>You are viewing <?php echo $username; ?> <small>(Level <?php
-                            $stmt = $db->prepare("SELECT level FROM ac_levels WHERE user = ?");
+                    <h2><?php
+                            $stmt = $db->prepare("SELECT level, last_update, last_update_server FROM ac_levels WHERE user = ?");
                             $stmt->bind_param('s',$username);
                             $stmt->execute();
                             $stmt->store_result();
 
-                            $stmt->bind_result($level);
+                            $stmt->bind_result($remLevel, $remUpdate, $remServer);
                             if($stmt->num_rows > 0){
                                 while($stmt->fetch()){
-                                    echo $level;
+                                    $level = $remLevel;
+                                    $update = date('F jS Y g:i A', strtotime($remUpdate));
+                                    $server = $remServer;
                                 }
                             }else{
-                                echo '0';
+                                $level = 0;
                             }
-                            ?>)</small></h2>
-                    <p><a href="index.php">Go back</a></p>
+                            $stmt->free_result();
+                            $stmt = $db->prepare("SELECT name, level, color FROM ac_groups");
+                            $stmt->execute();
+                            $stmt->store_result();
+
+                            $stmt->bind_result($groupName, $groupLevel, $groupColor);
+
+                            $group = "Low";
+                            $color = "GREEN";
+                            if($stmt->num_rows > 0){
+                                while($stmt->fetch()) {
+                                    if($level >= $groupLevel) {
+                                        $group = $groupName;
+                                        $color = $groupColor;
+                                    }
+                                }
+                            }
+                            require_once('util/Group.php');
+                            echo '<font color="'.Group::getWebColor($color).'">';
+                            echo $username;
+                            echo ' ('.$group.')';
+                            echo '</font></h2>';
+                            echo '<small>Last seen: '.$update.' on '.$server.'</small>';
+                            ?>
+                        </font></h2>
                 </div>
             <?php } ?>
             <div class="grid-100 grid-parent top-margin-20">
