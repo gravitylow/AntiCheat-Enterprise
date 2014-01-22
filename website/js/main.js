@@ -55,6 +55,17 @@ $(function(){
             })
         }
     });
+
+    $("#editlevel-link").click(function(){
+        $("#editlevel-form").fadeToggle();
+    });
+    $("#editlevel-form").submit(function(e){
+        e.preventDefault();
+        var data = $("#editlevel-form :input").serialize();
+        $.post("util/ChangeLevel.php", data, function(data){
+            showAlert(data);
+        });
+    });
 });
 
 function getUrlVar(key){

@@ -364,6 +364,10 @@ select.input-lg, select.input-group-lg > .form-control, select.input-group-lg > 
     clear:both;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 .btn {
     display:inline-block;
     box-sizing:border-box;
@@ -1187,8 +1191,28 @@ th a:hover {
     width: 60px;
 }
 h2 small {
-    font-size: 12px;
+    font-size: 17px;
 }
 .pull-right {
     float: right;
+}
+input#level {
+    width: 25px;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 4px 0px 0px 4px;
+}
+#editlevel-form {
+    display: none;
+    margin-top: 20px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+.stepper-group {
+    width: 82px;
+    margin: 0 auto;
 }
