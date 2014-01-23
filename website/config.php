@@ -4,8 +4,9 @@ $url = 'localhost'; // URL to your MySQL server. If your MySQL server is on the 
 $user = 'anticheat'; // Database username
 $password = 'password'; // Database password
 $database = 'anticheat'; // Database name
+$port = 3306; // Database port
 
 
 /* ------------ Do not edit below this line ------------ */
 
-$db = mysqli_connect($url, $user, $password, $database);
+$db = mysqli_connect($url, $user, $password, $database, $port);
