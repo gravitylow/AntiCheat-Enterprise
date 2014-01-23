@@ -23,7 +23,7 @@ if($query->num_rows > 0){
                 if(empty($username)){
                     echo 'You must enter a username.';
                 }else{
-                    $db->query("CREATE TABLE ac_users(id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,username VARCHAR(16),password VARCHAR(256),privileges VARCHAR(45))");
+                    $db->query("CREATE TABLE ac_users(id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,username VARCHAR(16),password VARCHAR(256),privileges VARCHAR(45) DEFAULT 'admin')");
                     $stmt = $db->prepare("INSERT INTO ac_users(`username`,`password`) VALUES(?,?)");
                     $stmt->bind_param('ss',$username,$password);
                     $stmt->execute();
