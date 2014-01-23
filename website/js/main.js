@@ -150,7 +150,8 @@ $(function(){
         });
     });
 
-    $("#changepassword").submit(function(){
+    $("#changepassword").submit(function(e){
+        e.preventDefault();
         var data = $("#changepassword").serialize();
         $.post("util/ChangePassword.php", data, function(data){
             showAlert(data);

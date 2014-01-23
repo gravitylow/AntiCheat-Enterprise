@@ -14,7 +14,7 @@ if(empty($username) || empty($password)){
     $stmt->store_result();
 }
 
-if($stmt->num_rows() == 0){
+if($stmt->num_rows == 0){
     echo 'Your username or password was incorrect [0x001]';
 }else{
     $stmt->bind_result($nid, $nusername, $npassword, $nprivileges);

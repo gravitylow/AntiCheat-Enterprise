@@ -1,11 +1,9 @@
 <?php
-
 session_start();
-
 require_once("../config.php");
+require("PassAuth.php");
 
 if($_SESSION['online']){
-
     $password = $_POST['currentpassword'];
     $pass1 = $_POST['newpassword1'];
     $pass2 = $_POST['newpassword2'];
@@ -22,13 +20,13 @@ if($_SESSION['online']){
         }
         $stmt->close();
 
-        if(!PassAuth::checkPassword($oldpassword, $password)){
+        if(!PassAuth::checkPassword($password, $oldpassword)){
             echo "Your current password is incorrect.";
         }else{
             if($pass1 != $pass2 || empty($pass2) || empty($pass1)){
                 echo "Your new passwords do not match";
             }else{
-                if(PassAuth::checkPassword($oldpassword, $pass1)){
+                if(PassAuth::checkPassword($pass1, $oldpassword)){
                     echo "You can't change your password to that!";
                 }else{
                     $password = PassAuth::encryptPassword($pass1);
