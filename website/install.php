@@ -1,3 +1,5 @@
+<h1>Install</h1>
+<p>Make sure you edit config.php with the correct database information before using this form.</p>
 <?php
 require("util/PassAuth.php");
 require_once('config.php');
@@ -5,7 +7,7 @@ require_once('config.php');
 $query = $db->query("SHOW TABLES LIKE 'ac_users'");
 if($query->num_rows > 0){
     ?>
-    <h1>Installation Completed</h1>
+    <h2>Installation Completed</h2>
     Please delete the install.php file for security reasons. Then, return to your index page and sign in with your new account. If you do not delete your install.php file you will not be able to access your AntiCheat panel.
 <?php
 }else{
@@ -26,7 +28,7 @@ if($query->num_rows > 0){
                     $stmt->bind_param('ss',$username,$password);
                     $stmt->execute();
                     ?>
-                    <h1>Installation Completed</h1>
+                    <h2>Installation Completed</h2>
                     Please delete the install.php file for security reasons. Then, return to your index page and sign in with your new account. If you do not delete your install.php file you will not be able to access your AntiCheat panel.
                     <?php
                     $stmt->close();
@@ -38,8 +40,6 @@ if($query->num_rows > 0){
         }
     }
     ?>
-    <h1>Install</h1>
-    <p>Make sure you edit config.php with the correct database information before using this form.</p>
     <form method="post" action="install.php">
         Enter Superadmin Username:
         <input type="text" name="username" required /><br />
