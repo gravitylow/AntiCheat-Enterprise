@@ -7,7 +7,7 @@ include("partials/header.php");
         $username = $_GET['user'];
         if(!empty($username)){ ?>
             <div class="grid-100 text-center top-margin-20">
-                <h2><?php
+                <?php
                     $stmt = $db->prepare("SELECT level, last_update, last_update_server FROM ac_levels WHERE user = ?");
                     $stmt->bind_param('s',$username);
                     $stmt->execute();
@@ -41,16 +41,18 @@ include("partials/header.php");
                         }
                     }
                     require_once('util/Group.php');
-                    echo '<font color="'.Group::getWebColor($color).'">';
+                    $webColor = Group::getWebColor($color);
+                    echo '<img style="border:1px solid #'.$webColor.';" src="http://minecraft.aggenkeech.com/face.php?u='.$username.'&s=100" /><br><br>';
+                    echo '<h2><font color="'.$webColor.'">';
                     echo $username;
                     echo ' <small>('.$group.')</small>';
                     echo '</font></h2>';
-                    echo '<small>Last seen: ';
+                    echo '<small>Last updated: ';
 
                     if(empty($update)){
                         echo 'Never';
                     }else{
-                        echo ''.$update.' on '.$server;
+                        echo ''.$update.' from '.($server == "MANUAL" ? "the web" : $server).'.';
                     }
                     echo '</small>';
                     ?>
