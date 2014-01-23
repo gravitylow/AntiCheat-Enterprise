@@ -34,7 +34,7 @@ if($_SESSION['online']){
                     $stmt->bind_param("ss",$password,$_SESSION['username']);
                     $stmt->execute();
                     $stmt->close();
-                    echo "Your password has been changed. You will must login again before proceeding to another page.";
+                    echo "Your password has been changed. You must login again before proceeding to another page.";
                     session_destroy();
                 }
             }

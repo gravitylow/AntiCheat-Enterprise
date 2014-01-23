@@ -10,17 +10,21 @@ if($_SESSION['online']){
     $color = $_POST['color'];
     $actions = $_POST['actions'];
 
-    if($id == "new"){
-        $stmt = $db->prepare("INSERT INTO ac_groups(name,level,color,actions) VALUES(?,?,?,?)");
-        $stmt->bind_param("siss",$name,$level,$color,$actions);
+    if(empty($name) || empty($level) || empty($color) || empty($actions)){
+        echo "You left something blank!";
     }else{
-        $stmt = $db->prepare("UPDATE ac_groups SET name=?,level=?,color=?,actions=? WHERE id = ?");
-        $stmt->bind_param("sissi",$name,$level,$color,$actions,$id);
-    }
+        if($id == "new"){
+            $stmt = $db->prepare("INSERT INTO ac_groups(name,level,color,actions) VALUES(?,?,?,?)");
+            $stmt->bind_param("siss",$name,$level,$color,$actions);
+        }else{
+            $stmt = $db->prepare("UPDATE ac_groups SET name=?,level=?,color=?,actions=? WHERE id = ?");
+            $stmt->bind_param("sissi",$name,$level,$color,$actions,$id);
+        }
 
-    if($stmt->execute()){
-        echo "Group has been saved.";
-    }else{
-        echo "Could not save group.";
+        if($stmt->execute()){
+            echo "Group has been saved.";
+        }else{
+            echo "Could not save group.";
+        }
     }
 }

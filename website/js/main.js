@@ -56,6 +56,8 @@ $(function(){
                     });
                 });
             });
+        }else{
+            showAlert("You must save the current new group before adding another one");
         }
     });
     $("a[href='#removegroup']").click(function(){
@@ -97,6 +99,8 @@ $(function(){
                     });
                 });
             });
+        }else{
+            showAlert("You must save the current new rule before adding another one");
         }
     });
     $("a[href='#removerule']").click(function(){
