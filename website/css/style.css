@@ -1108,6 +1108,10 @@ a {
     outline:none;
 }
 
+#usercp a+a {
+    margin-left:8px;
+}
+
 button.close {
     padding:0;
     cursor:pointer;

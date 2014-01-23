@@ -1,8 +1,9 @@
 <?php
-
 session_start();
-require_once("../config.php");
 
 if($_SESSION['online']){
-    $db->query("DELETE FROM Logs");
+    require_once("../config.php");
+
+    $stmt = $db->prepare("TRUNCATE Logs");
+    $stmt->execute();
 }

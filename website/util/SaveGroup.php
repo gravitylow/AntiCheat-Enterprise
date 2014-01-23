@@ -19,8 +19,8 @@ if($_SESSION['online']){
     }
 
     if($stmt->execute()){
-        echo "$name has been saved. Reloading page to implement changes..";
+        echo "$name has been saved.";
     }else{
-        echo "Could not save $name. Reloading page to implement changes..";
+        echo "Could not save $name.";
     }
 }

@@ -35,6 +35,7 @@
 
             ?>
             <div id="usercp">
+                <a href="index.php">Home</a>
                 <a href="editgroups.php">Edit Groups</a>
                 <input type="submit" id="logout" value="Logout" />
             </div>
