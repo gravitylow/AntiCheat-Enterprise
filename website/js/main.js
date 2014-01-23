@@ -149,6 +149,13 @@ $(function(){
             window.location.reload();
         });
     });
+
+    $("#changepassword").submit(function(){
+        var data = $("#changepassword").serialize();
+        $.post("util/ChangePassword.php", data, function(data){
+            showAlert(data);
+        });
+    });
 });
 
 function getUrlVar(key){

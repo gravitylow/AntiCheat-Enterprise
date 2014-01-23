@@ -38,6 +38,7 @@
                 <a href="index.php">Home</a>
                 <a href="editgroups.php">Edit Groups</a>
                 <a href="editrules.php">Edit Rules</a>
+                <a href="changepassword.php">Change Password</a>
                 <input type="submit" id="logout" value="Logout" />
             </div>
         <?php } ?>
