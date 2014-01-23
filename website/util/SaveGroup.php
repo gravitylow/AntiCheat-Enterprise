@@ -19,8 +19,8 @@ if($_SESSION['online']){
     }
 
     if($stmt->execute()){
-        echo "$name has been saved.";
+        echo "Group has been saved.";
     }else{
-        echo "Could not save $name.";
+        echo "Could not save group.";
     }
 }

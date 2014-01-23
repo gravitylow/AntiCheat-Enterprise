@@ -67,11 +67,51 @@ $(function(){
             });
         }
     });
-
     $("a[href='#savegroup']").click(function(){
         var id = $(this).data("id");
         var input = $("#"+id+" :input").serialize();
         $.post("util/SaveGroup.php", input, function(data){
+            showAlert(data);
+        });
+    });
+
+    $("#addrule").click(function(){
+        if($("#new").length == 0){
+            $.get("ajax/newrule.php", function(data){
+                $("#ruleform").append(data);
+
+                $("a[href='#removenewrule']").click(function(){
+                    if(confirm("Are you sure you want to delete this rule? This can't be undone!")){
+                        $.post("util/RemoveRule.php", {id:"new"}, function(data){
+                            $("#new").remove();
+                            showAlert(data);
+                        });
+                    }
+                });
+
+                $("a[href='#savenewrule']").click(function(){
+                    var input = $("#new :input").serialize();
+                    $.post("util/SaveRule.php", input, function(data){
+                        showAlert(data);
+                        window.location.reload();
+                    });
+                });
+            });
+        }
+    });
+    $("a[href='#removerule']").click(function(){
+        if(confirm("Are you sure you want to delete this rule? This can't be undone!")){
+            var id = $(this).data("id");
+            $.post("util/RemoveRule.php", {id:id}, function(data){
+                $("#"+id).remove();
+                showAlert(data);
+            });
+        }
+    });
+    $("a[href='#saverule']").click(function(){
+        var id = $(this).data("id");
+        var input = $("#"+id+" :input").serialize();
+        $.post("util/SaveRule.php", input, function(data){
             showAlert(data);
         });
     });
