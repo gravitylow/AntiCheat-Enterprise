@@ -31,6 +31,7 @@ if(isset($_POST['submit'])){
 }
 ?>
 <h1>Install</h1>
+<p>Make sure you edit config.php with the correct database information before using this form.</p>
 <form method="post" action="install.php">
     Enter Superadmin Username:
     <input type="text" name="username" required /><br />
