@@ -48,8 +48,10 @@
                 <a href="index.php"><img src="img/logo.png" class="logo center" /></a>
             </div>
         </div>
-        <div class="grid-100">
-            <div class="well">
-                AntiCheat helps server admins easily identify and block malicious users by monitoring and analyzing the behavior of your players. AntiCheat will look for tell-tale signs of hacked clients, as well as implement limits into the game so that players cannot gain an advantage by hacking.
+        <?php if(!$_SESSION['online']){ ?>
+            <div class="grid-100">
+                <div class="well">
+                    AntiCheat helps server admins easily identify and block malicious users by monitoring and analyzing the behavior of your players. AntiCheat will look for tell-tale signs of hacked clients, as well as implement limits into the game so that players cannot gain an advantage by hacking.
+                </div>
             </div>
-        </div>
+        <?php } ?>
