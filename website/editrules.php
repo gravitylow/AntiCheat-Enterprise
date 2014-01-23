@@ -5,8 +5,10 @@ include("partials/header.php");
 
 if($_SESSION['online']){
     ?>
-    <div class="well top-margin-20">
-        <input type="submit" id="addrule" class="btn btn-danger" value="Add Rule">
+    <div class="grid-100">
+        <div class="well top-margin-20">
+            <input type="submit" id="addrule" class="btn btn-danger" value="Add Rule">
+        </div>
     </div>
     <div id="ruleform">
         <?php
