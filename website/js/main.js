@@ -34,6 +34,48 @@ $(function(){
         });
     });
 
+    $("#addgroup").click(function(){
+        if($("#new").length == 0){
+            $.get("ajax/newgroup.php", function(data){
+                $("#groupform").append(data);
+
+                $("a[href='#removenewgroup']").click(function(){
+                    if(confirm("Are you sure you want to delete this group? This can't be undone!")){
+                        $.post("util/RemoveGroup.php", {id:"new"}, function(data){
+                            $("#new").remove();
+                            showAlert(data);
+                        });
+                    }
+                });
+
+                $("a[href='#savenewgroup']").click(function(){
+                    var input = $("#new :input").serialize();
+                    $.post("util/SaveGroup.php", input, function(data){
+                        showAlert(data);
+                        window.location.reload();
+                    });
+                });
+            });
+        }
+    });
+    $("a[href='#removegroup']").click(function(){
+        if(confirm("Are you sure you want to delete this group? This can't be undone!")){
+            var id = $(this).data("id");
+            $.post("util/RemoveGroup.php", {id:id}, function(data){
+                $("#"+id).remove();
+                showAlert(data);
+            });
+        }
+    });
+
+    $("a[href='#savegroup']").click(function(){
+        var id = $(this).data("id");
+        var input = $("#"+id+" :input").serialize();
+        $.post("util/SaveGroup.php", input, function(data){
+            showAlert(data);
+        });
+    });
+
     $("#main-body").ready(function(){
         var user = getUrlVar('user');
         $.get("ajax/table.php?user="+user, function(data){
@@ -64,6 +106,7 @@ $(function(){
         var data = $("#editlevel-form :input").serialize();
         $.post("util/ChangeLevel.php", data, function(data){
             showAlert(data);
+            window.location.reload();
         });
     });
 });
@@ -78,13 +121,13 @@ function showAlert(data){
     $(".alert").slideDown();
     $("#topcontent").animate({
         'padding-top': 40,
-        'margin-bottom': -40,
+        'margin-bottom': -40
     });
 }
 function closeAlert(){
     $(".alert").slideUp();
     $("#topcontent").animate({
         'padding-top': 0,
-        'margin-bottom': 0,
+        'margin-bottom': 0
     });
 }

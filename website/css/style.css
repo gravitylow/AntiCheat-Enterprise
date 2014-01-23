@@ -1097,7 +1097,7 @@ a {
     width:100%;
 }
 
-#usercp input[type="submit"], #login input[type="submit"] {
+#usercp input[type="submit"], #usercp a, #login input[type="submit"] {
     background:transparent;
     text-decoration:none;
     cursor:pointer;
