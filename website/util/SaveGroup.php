@@ -26,5 +26,7 @@ if($_SESSION['online']){
         }else{
             echo "Could not save group.";
         }
+
+        $stmt->close();
     }
 }

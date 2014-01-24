@@ -13,4 +13,6 @@ if($_SESSION['online']){
     }else{
         echo "Could not delete rule";
     }
+
+    $stmt->close();
 }
