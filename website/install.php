@@ -5,7 +5,8 @@ require("util/PassAuth.php");
 require_once('config.php');
 
 $query = $db->query("SHOW TABLES LIKE 'ac_users'");
-if($query->num_rows > 0){
+$users = $db->query("SELECT * FROM ac_users WHERE privileges = 'superadmin'");
+if($query->num_rows > 0 && $users->num_rows > 0){
     ?>
     <h2>Installation Completed</h2>
     Please delete the install.php file for security reasons. Then, return to your index page and sign in with your new account. If you do not delete your install.php file you will not be able to access your AntiCheat panel.
