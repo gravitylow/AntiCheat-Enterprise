@@ -32,9 +32,9 @@ if($bool){
                 if(empty($username)){
                     echo 'You must enter a username.';
                 }else{
-                    $privilege = "superadmin"
                     $db->query("CREATE TABLE ac_users(id INT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,username VARCHAR(16),password VARCHAR(256),privileges VARCHAR(45) DEFAULT 'admin')");
                     $stmt = $db->prepare("INSERT INTO ac_users(`username`,`password`,`privileges`) VALUES(?,?,?)");
+                    $privilege = "superadmin";
                     $stmt->bind_param('sss',$username,$password,$privilege);
                     $stmt->execute();
                     ?>
