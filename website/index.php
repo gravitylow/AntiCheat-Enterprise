@@ -94,9 +94,11 @@ include("partials/header.php");
                     </tbody>
                 </table>
                 <div class="clear"></div>
-                <div class="pull-right top-margin-20">
-                    <button class="btn btn-default" id="clearlogs">Clear Logs</button>
-                </div>
+                <?php if(Privilege::hasAdmin($_SESSION['privileges'])) { ?>
+                    <div class="pull-right top-margin-20">
+                        <button class="btn btn-default" id="clearlogs">Clear Logs</button>
+                    </div>
+                <?php } ?>
             </div>
         </div>
     <?php } ?>
