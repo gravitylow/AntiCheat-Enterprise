@@ -1,9 +1,11 @@
 <?php
+
 session_start();
 require_once("../config.php");
+require_once("Privilege.php");
 require("PassAuth.php");
 
-if($_SESSION['online'] && $_SESSION['privileges'] == "superadmin"){
+if($_SESSION['online'] && Privilege::hasSuperAdmin($_SESSION['privileges'])){
 
     $username = $_POST['newusername'];
     $privileges = $_POST['newprivilege'];

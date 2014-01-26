@@ -1,10 +1,10 @@
 <?php
 
 session_start();
-
 require_once("../config.php");
+require_once("Privilege.php");
 
-if($_SESSION['online']){
+if($_SESSION['online'] && Privilege::hasAdmin($_SESSION['privileges'])){
 
     $level = $_POST['level'];
     $username = $_POST['username'];

@@ -60,7 +60,7 @@ if($_SESSION['online'] && Privilege::hasSuperAdmin($_SESSION['privileges'])){
             </div>
             <div class="grid-20">
                 <label class="control-label" for="password2">Confirm:</label>
-                <input type="password" id="password2" name="password1" class="form-control" />
+                <input type="password" id="password2" name="password2" class="form-control" />
             </div>
             <input type="hidden" id="userid" name="userid" />
             <div class="grid-10">
@@ -90,7 +90,7 @@ if($_SESSION['online'] && Privilege::hasSuperAdmin($_SESSION['privileges'])){
             </div>
             <div class="grid-20">
                 <label class="control-label" for="newpassword2">Confirm:</label>
-                <input type="password" id="newpassword2" name="newpassword1" class="form-control" />
+                <input type="password" id="newpassword2" name="newpassword2" class="form-control" />
             </div>
             <div class="grid-10">
                 &nbsp;<br />

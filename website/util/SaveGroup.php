@@ -1,7 +1,9 @@
 <?php
 
 session_start();
-if($_SESSION['online']){
+require_once("Privilege.php");
+
+if($_SESSION['online'] && Privilege::hasAdmin($_SESSION['privileges'])){
     require_once("../config.php");
 
     $id = $_POST['id'];

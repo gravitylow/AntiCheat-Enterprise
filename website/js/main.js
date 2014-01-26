@@ -205,7 +205,9 @@ $(function(){
             var id = $(this).data("id");
             $.post("util/RemoveUser.php", {id:id}, function(data){
                 showAlert(data);
-                window.location.reload();
+                if(data.indexOf("successfully") != -1) {
+                    window.location.reload();
+                }
             });
         }
     });

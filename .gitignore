@@ -1,4 +1,6 @@
 # IDE generated files #
 #######################
 
-.idea
+*.idea
+*.iml
+/.*
