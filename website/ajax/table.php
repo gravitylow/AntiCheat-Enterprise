@@ -14,24 +14,17 @@ if($_SESSION['online']){
 
     $stmt->execute();
     $stmt->store_result();
+    $json = array();
 
     if($stmt->num_rows > 0){
         $stmt->bind_result($id, $server, $time, $username, $checktype);
         while($stmt->fetch()){
-            ?>
-            <tr>
-                <td><?php echo $id; ?></td>
-                <td><img src="http://minecraft.aggenkeech.com/face.php?u=<?php echo $username; ?>&s=20" /> <a href="?user=<?php echo $username; ?>"><?php echo $username; ?></a></td>
-                <td><?php echo $checktype; ?></td>
-                <td><?php echo $server; ?></td>
-                <td><?php echo $time; ?></td>
-            </tr>
-        <?php }
-        ?>
-        <input type="hidden" id="numrows" value="<?php echo $stmt->num_rows; ?>" />
-    <?php
+            $json[] = array("id" => $id, "username" => $username, "type" => $checktype, "server" => $server,"time" => $time);
+        }
     }
 
     $stmt->close();
+
+    print json_encode($json);
 }
 ?>

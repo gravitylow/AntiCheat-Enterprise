@@ -125,27 +125,23 @@ $(function(){
     $("#main-body").ready(function(){
         var user = getUrlVar('user');
 
-        $.ajax({
-            type: "GET",
-            url:"ajax/table.php?user="+user,
-            dataType: "html",
-            async: true,
-            cache: false,
-            success: function(data){
-                $("#main-body").empty().append(data).queue(function(){
-                    $("#main-table").dynatable().queue(function(){
-                        $(this).dequeue();
-                    });
-                    var numrows = $("#numrows").val();
-                    if(numrows > 1000){
-                        showAlert("You have "+numrows+" logs for this query. This can cause a lot of lag. Please consider clearing your logs.");
-                    }
-                    $("#dynatable-query-search-main-table").addClass("form-control");
-                    $("#dynatable-per-page-main-table").addClass("form-control");
-                    $(this).dequeue();
-                });
-            }
-        })
+        $.get('ajax/table.php?user='+user, function(data){
+            $("#main-table").dynatable({
+                dataset: {
+                    records: data
+                },
+                inputs: {
+                    processingText: ""
+                },
+                writers: {
+                    _rowWriter: rowWriter
+                }
+            });
+
+            $("#dynatable-query-search-main-table").addClass("form-control");
+            $("#dynatable-per-page-main-table").addClass("form-control");
+        }, "json");
+
     });
 
     $("#clearlogs").click(function(){
@@ -232,6 +228,12 @@ $(function(){
         });
     });
 });
+
+function rowWriter(rowIndex, record, columns, cellWriter) {
+    var tr;
+    tr = '<tr><td>'+record.id+'</td><td><img src="http://minecraft.aggenkeech.com/face.php?u='+record.username+'&s=20" /> <a href="?user='+record.username+'">'+record.username+'</a></td><td>'+record.type+'</td><td>'+record.server+'</td><td>'+record.time+'</td></tr>';
+    return tr;
+}
 
 function getUrlVar(key){
     var result = new RegExp(key + "=([^&]*)", "i").exec(window.location.search);
