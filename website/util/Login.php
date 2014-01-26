@@ -20,7 +20,6 @@ if($stmt->num_rows == 0){
     $stmt->bind_result($nid, $nusername, $npassword, $nprivileges);
     while($stmt->fetch()){
         if(PassAuth::checkPassword($password, $npassword)){
-
             session_start();
             $_SESSION['online'] = true;
             $_SESSION['username'] = $nusername;

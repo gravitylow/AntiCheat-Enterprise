@@ -27,6 +27,11 @@ if($_SESSION['online']){
                 <td><?php echo $time; ?></td>
             </tr>
         <?php }
+        ?>
+        <input type="hidden" id="numrows" value="<?php echo $stmt->num_rows; ?>" />
+    <?php
     }
+
+    $stmt->close();
 }
 ?>

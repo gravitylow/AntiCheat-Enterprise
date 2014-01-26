@@ -102,6 +102,10 @@ select {
     line-height:inherit;
 }
 
+select.form-control {
+    height: 34px;
+}
+
 textarea {
     font-family:inherit;
     font-size:100%;

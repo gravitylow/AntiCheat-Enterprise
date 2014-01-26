@@ -124,16 +124,28 @@ $(function(){
 
     $("#main-body").ready(function(){
         var user = getUrlVar('user');
-        $.get("ajax/table.php?user="+user, function(data){
-            $("#main-body").empty().append(data).queue(function(){
-                $("#main-table").dynatable().queue(function(){
+
+        $.ajax({
+            type: "GET",
+            url:"ajax/table.php?user="+user,
+            dataType: "html",
+            async: true,
+            cache: false,
+            success: function(data){
+                $("#main-body").empty().append(data).queue(function(){
+                    $("#main-table").dynatable().queue(function(){
+                        $(this).dequeue();
+                    });
+                    var numrows = $("#numrows").val();
+                    if(numrows > 1000){
+                        showAlert("You have "+numrows+" logs for this query. This can cause a lot of lag. Please consider clearing your logs.");
+                    }
+                    $("#dynatable-query-search-main-table").addClass("form-control");
+                    $("#dynatable-per-page-main-table").addClass("form-control");
                     $(this).dequeue();
                 });
-                $("#dynatable-query-search-main-table").addClass("form-control");
-                $("#dynatable-per-page-main-table").addClass("form-control");
-                $(this).dequeue();
-            });
-        });
+            }
+        })
     });
 
     $("#clearlogs").click(function(){
