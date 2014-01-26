@@ -15,9 +15,11 @@ $(function(){
             showAlert(data);
         });
     });
+
     $("#close-alert").click(function(){
         closeAlert();
     });
+
     $("a[href='#colorblind']").click(function(){
         var cur = $('#stylesheet').attr("href");
         if(cur == "css/red.css") {
@@ -159,6 +161,60 @@ $(function(){
         var data = $("#changepassword").serialize();
         $.post("util/ChangePassword.php", data, function(data){
             showAlert(data);
+        });
+    });
+
+    $("#adduser").click(function(){
+        $("#newuser-form").fadeToggle();
+    });
+    $("a[href='#edituser']").click(function(){
+        var id = $(this).data("id");
+        $.getJSON("ajax/user.php?id="+id, function(data){
+            $.each(data, function(key, val){
+                $('input[name="'+val.field+'"]').val(val.value);
+                if(val.field === "privilege"){
+                    $("#privilege option[value=" + val.value +"]").attr('selected', 'selected');
+                    if(val.value === "superadmin"){
+                        console.log('disabling');
+                        $("#privilege option[value=admin]").attr('disabled','disabled');
+                        $("#privilege option[value=user]").attr('disabled','disabled');
+                    } else {
+                        console.log('enabling');
+                        $("#privilege option[value=admin]").removeAttr('disabled');
+                        $("#privilege option[value=user]").removeAttr('disabled');
+                    }
+                }
+            });
+        });
+        $("#edituser-form").fadeToggle();
+    });
+    $("a[href='#removeuser']").click(function(){
+        if(confirm("Are you sure you want to delete this user? This can't be undone!")){
+            var id = $(this).data("id");
+            $.post("util/RemoveUser.php", {id:id}, function(data){
+                showAlert(data);
+                window.location.reload();
+            });
+        }
+    });
+    $("#edituser-form").submit(function(e){
+        e.preventDefault();
+        var data = $("#edituser-form :input").serialize();
+        $.post("util/ChangeUser.php", data, function(data){
+            showAlert(data);
+            if(data.indexOf("successfully") != -1) {
+                window.location.reload();
+            }
+        });
+    });
+    $("#newuser-form").submit(function(e){
+        e.preventDefault();
+        var data = $("#newuser-form :input").serialize();
+        $.post("util/AddUser.php", data, function(data){
+            showAlert(data);
+            if(data.indexOf("successfully") != -1) {
+                window.location.reload();
+            }
         });
     });
 });

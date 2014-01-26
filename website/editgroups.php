@@ -3,7 +3,7 @@ session_start();
 require_once("config.php");
 include("partials/header.php");
 
-if($_SESSION['online']){
+if($_SESSION['online'] && Privilege::hasAdmin($_SESSION['privileges'])){
     ?>
     <div class="grid-100">
         <div class="well top-margin-20">

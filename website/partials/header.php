@@ -4,6 +4,7 @@ if(file_exists("install.php")){
     header("Location: install.php");
 }
 
+include('util/Privilege.php');
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -44,9 +45,14 @@ if(file_exists("install.php")){
             ?>
             <div id="usercp">
                 <a href="index.php">Home</a>
-                <a href="editgroups.php">Edit Groups</a>
-                <a href="editrules.php">Edit Rules</a>
-                <a href="changepassword.php">Change Password</a>
+                <?php if(Privilege::hasAdmin($_SESSION['privileges'])){ ?>
+                    <a href="editgroups.php">Groups</a>
+                    <a href="editrules.php">Rules</a>
+                <?php } ?>
+                <a href="account.php">Account</a>
+                <?php if(Privilege::hasSuperAdmin($_SESSION['privileges'])){ ?>
+                    <a href="admin.php">Admin</a>
+                <?php } ?>
                 <input type="submit" id="logout" value="Logout" />
             </div>
         <?php } ?>

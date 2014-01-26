@@ -1210,6 +1210,14 @@ input#level {
     display: none;
     margin-top: 20px;
 }
+#edituser-form {
+    display: none;
+    margin-top: 20px;
+}
+#newuser-form {
+    display: none;
+    margin-top: 20px;
+}
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     /* display: none; <- Crashes Chrome on hover */

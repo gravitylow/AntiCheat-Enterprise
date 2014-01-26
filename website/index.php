@@ -55,10 +55,12 @@ include("partials/header.php");
                         echo ''.$update.' from '.($server == "MANUAL" ? "the web" : $server).'.';
                     }
                     echo '</small>';
+                    if(Privilege::hasAdmin($_SESSION['privileges'])) {
                     ?>
                     <p>
                         <small id="editlevel-link" class="pointer"><i class="fa fa-pencil"></i> Edit Level</small>
                     </p>
+                    <?php } ?>
                     </font></h2>
             </div>
             <form id="editlevel-form">
