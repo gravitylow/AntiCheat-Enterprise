@@ -96,6 +96,17 @@ if($_SESSION['online'] && Privilege::hasSuperAdmin($_SESSION['privileges'])){
                 &nbsp;<br />
                 <button class="btn btn-danger" type="submit">Save</button>
             </div>
+            <div class="grid-100">
+                <p>
+                    <strong>SuperAdmin:</strong> This user has full access to the system, including all administrative actions, and can create / edit / delete users.
+                </p>
+                <p>
+                    <strong>Admin:</strong> This user has access to the logs, the groups and levels configurations, and can change player's cheat levels.
+                </p>
+                <p>
+                    <strong>User:</strong> This user has read-only access. They can see logs and user's levels, but can change nothing (aside from editing their own password).
+                </p>
+            </div>
         </form>
     </div>
 <?php
