@@ -183,11 +183,9 @@ $(function(){
                 if(val.field === "privilege"){
                     $("#privilege option[value=" + val.value +"]").attr('selected', 'selected');
                     if(val.value === "superadmin"){
-                        console.log('disabling');
                         $("#privilege option[value=admin]").attr('disabled','disabled');
                         $("#privilege option[value=user]").attr('disabled','disabled');
                     } else {
-                        console.log('enabling');
                         $("#privilege option[value=admin]").removeAttr('disabled');
                         $("#privilege option[value=user]").removeAttr('disabled');
                     }
