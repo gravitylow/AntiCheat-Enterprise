@@ -9,8 +9,9 @@ if($_SESSION['online'] && Privilege::hasAdmin($_SESSION['privileges'])){
         <div class="well top-margin-20">
             <input type="submit" id="addgroup" class="btn btn-danger" value="Add Group">
         </div>
+        <a href="http://dev.bukkit.org/bukkit-plugins/anticheat/pages/configuration/groups-yml/" target="_blank" class="pull-right top-margin-20">What are groups?</a>
     </div>
-    <div class="grid-100 grid-parent text-center top-margin-20">
+    <div class="grid-100 grid-parent text-center">
         <div class="grid-20">
             <h2>Name</h2>
         </div>

@@ -231,7 +231,7 @@ $(function(){
 
 function rowWriter(rowIndex, record, columns, cellWriter) {
     var tr;
-    tr = '<tr><td>'+record.id+'</td><td><img src="http://minecraft.aggenkeech.com/face.php?u='+record.username+'&s=20" /> <a href="?user='+record.username+'">'+record.username+'</a></td><td>'+record.type+'</td><td>'+record.server+'</td><td>'+record.time+'</td></tr>';
+    tr = '<tr><td>'+record.id+'</td><td><img src="util/Face.php?u='+record.username+'&s=20" /> <a href="?user='+record.username+'">'+record.username+'</a></td><td>'+record.type+'</td><td>'+record.server+'</td><td>'+record.time+'</td></tr>';
     return tr;
 }
 

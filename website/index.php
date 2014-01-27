@@ -42,7 +42,7 @@ include("partials/header.php");
                     }
                     require_once('util/Group.php');
                     $webColor = Group::getWebColor($color);
-                    echo '<img style="border:1px solid #'.$webColor.';" src="http://minecraft.aggenkeech.com/face.php?u='.$username.'&s=100" /><br><br>';
+                    echo '<img style="border:1px solid #'.$webColor.';" src="util/Face.php?u='.$username.'&s=100" /><br><br>';
                     echo '<h2><font color="'.$webColor.'">';
                     echo $username;
                     echo ' <small>('.$group.')</small>';
