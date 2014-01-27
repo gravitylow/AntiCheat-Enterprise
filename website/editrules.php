@@ -9,6 +9,7 @@ if($_SESSION['online'] && Privilege::hasAdmin($_SESSION['privileges'])){
         <div class="well top-margin-20">
             <input type="submit" id="addrule" class="btn btn-danger" value="Add Rule">
         </div>
+        <a href="http://dev.bukkit.org/bukkit-plugins/anticheat/pages/configuration/rules-yml/" target="_blank" class="pull-right top-margin-20">What are rules?</a>
     </div>
     <div id="ruleform">
         <?php
@@ -21,7 +22,7 @@ if($_SESSION['online'] && Privilege::hasAdmin($_SESSION['privileges'])){
         $stmt->bind_result($id, $rule);
         while($stmt->fetch()){
             ?>
-            <form class="grid-100 grid-parent top-margin-20" id="<?php echo $id; ?>">
+            <form class="grid-100 grid-parent" id="<?php echo $id; ?>">
                 <input type="hidden" name="id" value="<?php echo $id; ?>" />
                 <div class="grid-80">
                     <input type="text" name="rule" class="form-control" value="<?php echo $rule; ?>" />
