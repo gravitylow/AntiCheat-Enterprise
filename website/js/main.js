@@ -121,6 +121,20 @@ $(function(){
             showAlert(data);
         });
     });
+    $("a[href='#savelang']").click(function(){
+        var id = $(this).data("id");
+        var input = $("#"+id+" :input").serialize();
+        $.post("util/SaveLang.php", input, function(data){
+            showAlert(data);
+        });
+    });
+    $("a[href='#savemagic']").click(function(){
+        var id = $(this).data("id");
+        var input = $("#"+id+" :input").serialize();
+        $.post("util/SaveMagic.php", input, function(data){
+            showAlert(data);
+        });
+    });
 
     $("#main-body").ready(function(){
         var user = getUrlVar('user');
@@ -245,6 +259,9 @@ function showAlert(data){
         'padding-top': 40,
         'margin-bottom': -40
     });
+    window.setTimeout(function() {
+        closeAlert();
+    }, 3000);
 }
 function closeAlert(){
     $(".alert").slideUp();

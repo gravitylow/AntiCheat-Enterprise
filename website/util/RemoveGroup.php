@@ -11,7 +11,7 @@ if($_SESSION['online'] && Privilege::hasAdmin($_SESSION['privileges'])){
     $stmt->bind_param("i",$id);
 
     if($stmt->execute()){
-        echo "Group has been deleted.";
+        echo "Group deleted.";
     }else{
         echo "Could not delete group";
     }

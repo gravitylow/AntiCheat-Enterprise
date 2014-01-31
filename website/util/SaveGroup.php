@@ -24,7 +24,7 @@ if($_SESSION['online'] && Privilege::hasAdmin($_SESSION['privileges'])){
         }
 
         if($stmt->execute()){
-            echo "Group has been saved.";
+            echo "Group saved.";
         }else{
             echo "Could not save group.";
         }

@@ -4,6 +4,11 @@ require_once("config.php");
 include("partials/header.php");
 
 if($_SESSION['online'] && Privilege::hasAdmin($_SESSION['privileges'])){
+    if(!exists("rules")) {
+        echo '<br><center>You need to enable the rules syncing option in AntiCheat to use this page. Please see your enterprise.yml</center>';
+        include("partials/footer.php");
+        die();
+    }
     ?>
     <div class="grid-100">
         <div class="well top-margin-20">

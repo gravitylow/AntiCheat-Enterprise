@@ -44,16 +44,26 @@ include('util/Privilege.php');
 
             ?>
             <div id="usercp">
-                <a href="index.php">Home</a>
-                <?php if(Privilege::hasAdmin($_SESSION['privileges'])){ ?>
-                    <a href="editgroups.php">Groups</a>
-                    <a href="editrules.php">Rules</a>
-                <?php } ?>
-                <a href="account.php">Account</a>
-                <?php if(Privilege::hasSuperAdmin($_SESSION['privileges'])){ ?>
-                    <a href="admin.php">Admin</a>
-                <?php } ?>
-                <input type="submit" id="logout" value="Logout" />
+                <div class="pull-right" style="padding-top: 3px;"><input type="submit" id="logout" value="Logout" /></div>
+                <nav>
+                    <ul id="nav">
+                        <li><a href="index.php">Home</a></li>
+                        <?php if(Privilege::hasAdmin($_SESSION['privileges'])){ ?>
+                            <li><a>Config</a>
+                                <ul>
+                                    <li><a href="groups.php">Groups</a></li>
+                                    <li><a href="rules.php">Rules</a></li>
+                                    <li><a href="lang.php">Lang</a></li>
+                                    <li><a href="magic.php">Magic</a></li>
+                                </ul>
+                            </li>
+                        <?php } ?>
+                        <li><a href="account.php">Account</a>
+                        <?php if(Privilege::hasSuperAdmin($_SESSION['privileges'])){ ?>
+                            <li><a href="admin.php">Admin</a>
+                        <?php } ?>
+                    </ul>
+                </nav>
             </div>
         <?php } ?>
     </div>
