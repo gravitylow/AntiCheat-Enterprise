@@ -3,7 +3,7 @@
 $size = isset($_GET['s']) ? max(8,min(250,$_GET['s'])) : 48;
 $user = $_GET['u'];
 
-if(extension_loaded("gd")){
+if(extension_loaded("gd") && function_exists('curl_version')){
     function get_skin($user='char') {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'http://s3.amazonaws.com/MinecraftSkins/' . $user . '.png');
