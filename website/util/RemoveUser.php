@@ -7,7 +7,7 @@ require_once("Privilege.php");
 if($_SESSION['online'] && Privilege::hasSuperAdmin($_SESSION['privileges'])){
 
     $id = $_POST['id'];
-    $stmt = $db->prepare("SELECT privileges FROM ac_users WHERE id=?");
+    $stmt = $db->prepare("SELECT privileges FROM ".$prefix."users WHERE id=?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $stmt->store_result();
@@ -23,7 +23,7 @@ if($_SESSION['online'] && Privilege::hasSuperAdmin($_SESSION['privileges'])){
         $stmt->close();
     }
 
-    $stmt = $db->prepare("DELETE FROM ac_users WHERE id = ?");
+    $stmt = $db->prepare("DELETE FROM ".$prefix."users WHERE id = ?");
     $stmt->bind_param("i",$id);
 
     if($stmt->execute()){

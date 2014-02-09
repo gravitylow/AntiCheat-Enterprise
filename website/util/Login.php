@@ -9,7 +9,7 @@ $password = $_POST['password'];
 if(empty($username) || empty($password)){
     echo 'You have left something blank';
 }else{
-    $stmt = $db->prepare('SELECT * FROM ac_users WHERE username = ? LIMIT 1');
+    $stmt = $db->prepare("SELECT * FROM ".$prefix."users WHERE username = ? LIMIT 1");
     $stmt->bind_param('s',$username);
     $stmt->execute();
     $stmt->store_result();

@@ -23,7 +23,7 @@ if($_SESSION['online'] && Privilege::hasAdmin($_SESSION['privileges'])){
     <div id="magicform">
         <?php
 
-        $stmt = $db->prepare("SELECT * FROM ac_lang");
+        $stmt = $db->prepare("SELECT * FROM ".$prefix."lang");
         $stmt->execute();
 
         $stmt->store_result();

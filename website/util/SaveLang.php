@@ -9,7 +9,7 @@ if($_SESSION['online'] && Privilege::hasAdmin($_SESSION['privileges'])){
     $id = $_POST['id'];
     $value = $_POST['value'];
 
-    $stmt = $db->prepare("UPDATE ac_lang SET value = ? WHERE id = ?");
+    $stmt = $db->prepare("UPDATE ".$prefix."lang SET value = ? WHERE id = ?");
     $stmt->bind_param("si",$value,$id);
 
     if($stmt->execute()){

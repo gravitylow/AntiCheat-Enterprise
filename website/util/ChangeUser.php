@@ -18,7 +18,7 @@ if($_SESSION['online'] && Privilege::hasSuperAdmin($_SESSION['privileges'])){
     } else if($pass1 != $pass2 || empty($pass2) || empty($pass1)){
         echo "Your new passwords do not match";
     } else {
-        $stmt = $db->prepare("SELECT id FROM ac_users WHERE username=?");
+        $stmt = $db->prepare("SELECT id FROM ".$prefix."users WHERE username=?");
         $stmt->bind_param("s",$username);
         $stmt->execute();
         $stmt->store_result();
@@ -29,7 +29,7 @@ if($_SESSION['online'] && Privilege::hasSuperAdmin($_SESSION['privileges'])){
             $stmt->close();
 
             $password = PassAuth::encryptPassword($pass1);
-            $stmt = $db->prepare("UPDATE ac_users SET username=?, password=?, privileges=? WHERE id=?");
+            $stmt = $db->prepare("UPDATE ".$prefix."users SET username=?, password=?, privileges=? WHERE id=?");
             $stmt->bind_param("sssi",$username, $password, $privileges, $id);
             $stmt->execute();
             $stmt->close();

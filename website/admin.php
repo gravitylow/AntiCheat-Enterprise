@@ -19,7 +19,7 @@ if($_SESSION['online'] && Privilege::hasSuperAdmin($_SESSION['privileges'])){
     <div id="userform" class="top-margin-20 text-center grid-100 grid-parent">
         <?php
 
-        $stmt = $db->prepare("SELECT id, username, privileges FROM ac_users");
+        $stmt = $db->prepare("SELECT id, username, privileges FROM ".$prefix."users");
         $stmt->execute();
 
         $stmt->store_result();

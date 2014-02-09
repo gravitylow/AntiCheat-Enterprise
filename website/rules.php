@@ -19,7 +19,7 @@ if($_SESSION['online'] && Privilege::hasAdmin($_SESSION['privileges'])){
     <div id="ruleform">
         <?php
 
-        $stmt = $db->prepare("SELECT * FROM ac_rules");
+        $stmt = $db->prepare("SELECT * FROM ".$prefix."rules");
         $stmt->execute();
 
         $stmt->store_result();

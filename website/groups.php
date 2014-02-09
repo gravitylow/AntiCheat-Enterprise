@@ -34,7 +34,7 @@ if($_SESSION['online'] && Privilege::hasAdmin($_SESSION['privileges'])){
     <div id="groupform">
         <?php
 
-        $stmt = $db->prepare("SELECT * FROM ac_groups");
+        $stmt = $db->prepare("SELECT * FROM ".$prefix."groups");
         $stmt->execute();
 
         $stmt->store_result();

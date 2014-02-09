@@ -9,7 +9,7 @@ if($_SESSION['online'] && Privilege::hasAdmin($_SESSION['privileges'])){
     $level = $_POST['level'];
     $username = $_POST['username'];
 
-    $stmt = $db->prepare("REPLACE INTO ac_levels(user,level,last_update_server) VALUES(?,?,'MANUAL')");
+    $stmt = $db->prepare("REPLACE INTO ".$prefix."levels(user,level,last_update_server) VALUES(?,?,'MANUAL')");
     $stmt->bind_param('si',$username,$level);
     if($stmt->execute()){
         echo "$username's level was changed to $level";

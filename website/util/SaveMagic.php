@@ -13,7 +13,7 @@ if($_SESSION['online'] && Privilege::hasAdmin($_SESSION['privileges'])){
 
     if($value_int != null) {
         if(ctype_digit($value_int)) {
-            $stmt = $db->prepare("UPDATE ac_magic SET value_int = ? WHERE id = ?");
+            $stmt = $db->prepare("UPDATE ".$prefix."magic SET value_int = ? WHERE id = ?");
             $stmt->bind_param("ii",$value_int,$id);
         } else {
             echo "You must provide an integer value.";
@@ -21,7 +21,7 @@ if($_SESSION['online'] && Privilege::hasAdmin($_SESSION['privileges'])){
         }
     } else if($value_double != null) {
         if(is_float($value_double)) {
-            $stmt = $db->prepare("UPDATE ac_magic SET value_double = ? WHERE id = ?");
+            $stmt = $db->prepare("UPDATE ".$prefix."magic SET value_double = ? WHERE id = ?");
             $stmt->bind_param("di",$value_double,$id);
         } else {
             echo "You must provide a decimal value.";

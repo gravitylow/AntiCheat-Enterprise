@@ -23,7 +23,7 @@ if($_SESSION['online'] && Privilege::hasAdmin($_SESSION['privileges'])){
     <div id="magicform">
         <?php
 
-        $stmt = $db->prepare("SELECT * FROM ac_magic");
+        $stmt = $db->prepare("SELECT * FROM ".$prefix."magic");
         $stmt->execute();
 
         $stmt->store_result();

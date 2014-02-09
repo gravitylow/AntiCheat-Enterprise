@@ -9,7 +9,7 @@ if($_SESSION['online']){
     $pass1 = $_POST['newpassword1'];
     $pass2 = $_POST['newpassword2'];
 
-    $stmt = $db->prepare("SELECT password FROM ac_users WHERE username=?");
+    $stmt = $db->prepare("SELECT password FROM ".$prefix."users WHERE username=?");
     $stmt->bind_param("s",$_SESSION['username']);
     $stmt->execute();
     $stmt->store_result();
@@ -31,7 +31,7 @@ if($_SESSION['online']){
                     echo "You can't change your password to that!";
                 }else{
                     $password = PassAuth::encryptPassword($pass1);
-                    $stmt = $db->prepare("UPDATE ac_users SET password=? WHERE username=?");
+                    $stmt = $db->prepare("UPDATE ".$prefix."users SET password=? WHERE username=?");
                     $stmt->bind_param("ss",$password,$_SESSION['username']);
                     $stmt->execute();
                     $stmt->close();

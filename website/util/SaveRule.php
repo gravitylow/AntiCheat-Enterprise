@@ -13,10 +13,10 @@ if($_SESSION['online'] && Privilege::hasAdmin($_SESSION['privileges'])){
         echo "You can't make a blank rule!";
     }else{
         if($id == "new"){
-            $stmt = $db->prepare("INSERT INTO ac_rules(rule) VALUES(?)");
+            $stmt = $db->prepare("INSERT INTO ".$prefix."rules(rule) VALUES(?)");
             $stmt->bind_param("s",$rule);
         }else{
-            $stmt = $db->prepare("UPDATE ac_rules SET rule=? WHERE id = ?");
+            $stmt = $db->prepare("UPDATE ".$prefix."rules SET rule=? WHERE id = ?");
             $stmt->bind_param("si",$rule,$id);
         }
 

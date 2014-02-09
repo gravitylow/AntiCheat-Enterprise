@@ -8,7 +8,7 @@ include("partials/header.php");
         if(!empty($username)){ ?>
             <div class="grid-100 text-center top-margin-20">
                 <?php
-                    $stmt = $db->prepare("SELECT level, last_update, last_update_server FROM ac_levels WHERE user = ?");
+                    $stmt = $db->prepare("SELECT level, last_update, last_update_server FROM ".$prefix."levels WHERE user = ?");
                     $stmt->bind_param('s',$username);
                     $stmt->execute();
                     $stmt->store_result();
@@ -24,7 +24,7 @@ include("partials/header.php");
                         $level = 0;
                     }
                     $stmt->free_result();
-                    $stmt = $db->prepare("SELECT name, level, color FROM ac_groups");
+                    $stmt = $db->prepare("SELECT name, level, color FROM ".$prefix."groups");
                     $stmt->execute();
                     $stmt->store_result();
 
