@@ -22,7 +22,7 @@ include('util/Privilege.php');
 </head>
 <body>
 <div class="wrapper">
-    <div class="alert"><span id="alert-text"></span><button type="button" class="close" id="close-alert">x</button></div>
+    <div class="alert"><span id="alert-text"><noscript>You must have JavaScript enabled to use this panel.</noscript></span><button type="button" class="close" id="close-alert">x</button></div>
     <div id="topcontent">
         <?php if(!$_SESSION['online']){ ?>
             <form id="loginform">
